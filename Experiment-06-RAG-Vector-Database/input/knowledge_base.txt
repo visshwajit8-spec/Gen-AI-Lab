@@ -1,0 +1,4 @@
+The Eiffel Tower is located in Paris, France and was completed in 1889.
+RAG (Retrieval-Augmented Generation) in AI combines document retrieval with text generation.
+Python is a popular high-level programming language used in AI development.
+Vector databases store embeddings and support fast similarity search.

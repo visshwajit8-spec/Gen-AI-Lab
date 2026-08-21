@@ -1,0 +1,18 @@
+Ex. No: 5 - Sentiment Analysis and Document Classification
+Sentiment model: distilbert-base-uncased-finetuned-sst-2-english
+Zero-shot model: typeform/distilbert-base-uncased-mnli
+
+--- Sentiment Analysis ---
+
+Review: The new smartphone has an amazing camera and battery life!
+ -> POSITIVE (1.0)
+
+Review: The delivery was late and the packaging was damaged.
+ -> NEGATIVE (1.0)
+
+--- Document Classification (Zero-Shot) ---
+Document: The central bank raised interest rates to control rising inflation.
+Economy: 0.497
+Politics: 0.249
+Technology: 0.169
+Sports: 0.085

@@ -1,0 +1,12 @@
+Ex. No: 3 - Conversational AI Chatbot (DialoGPT)
+Model: microsoft/DialoGPT-medium
+Chatbot ready! Type 'quit' to exit.
+
+>> User: Hi, how are you?
+Bot: I'm well , thanks .
+
+>> User: What can you help me with?
+Bot: I can't , sorry .
+
+>> User: Tell me a short joke
+Bot: I can't , sorry .

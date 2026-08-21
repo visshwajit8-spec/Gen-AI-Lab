@@ -1,0 +1,10 @@
+Ex. No: 8 - Image Generation Application Using Diffusion Models
+Model: runwayml/stable-diffusion-v1-5
+Device: CPU
+Inference steps: 30
+Guidance scale: 7.5
+
+Prompt: A futuristic city skyline at sunset, digital art, highly detailed
+
+Output Image: generated_city.png
+Image status: Successfully generated (512x512 PNG) and saved to disk.

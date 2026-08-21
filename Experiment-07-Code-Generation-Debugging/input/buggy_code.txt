@@ -1,0 +1,8 @@
+# The following function should return the factorial of n, but has a bug. Fix it.
+def factorial(n):
+    result = 0
+    for i in range(1, n+1):
+        result = result * i
+    return result
+# Corrected function:
+def factorial_fixed(n):

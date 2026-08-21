@@ -1,0 +1,16 @@
+transformers>=4.36.0
+torch
+sentence-transformers
+faiss-cpu
+numpy
+Pillow
+accelerate
+diffusers
+datasets
+scikit-learn
+gTTS
+gradio
+evaluate
+rouge_score
+requests
+

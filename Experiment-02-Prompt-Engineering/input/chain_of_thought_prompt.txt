@@ -1,0 +1,4 @@
+Q: A shop had 15 apples. It sold 6 and then received 10 more. How many apples now?
+A: Let's think step by step. 15 - 6 = 9. 9 + 10 = 19. The answer is 19.
+Q: A library had 120 books. It lent out 45 and bought 30 new books. How many books now?
+A: Let's think step by step.

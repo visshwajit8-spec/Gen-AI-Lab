@@ -1,0 +1,6 @@
+Review: 'I loved this movie, it was fantastic.'
+Sentiment: Positive
+Review: 'The service was slow and disappointing.'
+Sentiment: Negative
+Review: 'The product quality is excellent!'
+Sentiment:
