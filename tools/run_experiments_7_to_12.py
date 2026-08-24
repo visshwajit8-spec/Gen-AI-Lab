@@ -5,9 +5,15 @@ Executes each experiment, generates outputs and terminal screenshots.
 import subprocess
 import sys
 from pathlib import Path
-from tools.make_screenshot import render_screenshot
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+try:
+    from tools.make_screenshot import render_screenshot
+except ImportError:
+    from make_screenshot import render_screenshot
 
 EXPERIMENTS = [
     {
@@ -72,6 +78,8 @@ def run_all():
             print("STDERR:", result.stderr)
 
         if exp["output"].exists():
+            out_txt = exp["output"].parent / "output.txt"
+            out_txt.write_text(exp["output"].read_text(encoding="utf-8"), encoding="utf-8")
             render_screenshot(str(exp["output"]), str(exp["screenshot"]), exp["title"])
             print(f"Generated screenshot: {exp['screenshot']}")
         else:

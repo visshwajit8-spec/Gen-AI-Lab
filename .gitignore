@@ -1,8 +1,60 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+*.dylib
+*.dll
+
+# Virtual Environments
 .venv/
 venv/
+env/
+ENV/
+.env
+
+# Jupyter Notebook Checkpoints
 .ipynb_checkpoints/
-*.pt
+
+# Large Model Weights & Checkpoints (Heavy GenAI / Deep Learning Binaries)
 *.bin
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+*.onnx
+*.h5
+*.hdf5
+*.msgpack
+*.gguf
+*.ggml
+*.tflite
+*.pb
+*.weights
+*.model
+
+# HuggingFace & PyTorch Training Checkpoint Directories
+checkpoint-*/
+fine_tuned_*/
+**/fine_tuned_*
+**/checkpoint-*
+
+# Local Model Caches & Hub Downloads
 .cache/
+cache/
+huggingface/
+hf_cache/
+wandb/
+
+# Incomplete Downloads & Temporary Files
+*.incomplete
+*.tmp
+*.temp
+*.log
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

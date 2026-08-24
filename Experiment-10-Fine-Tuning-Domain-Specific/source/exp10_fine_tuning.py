@@ -4,15 +4,16 @@ FINE-TUNING A PRE-TRAINED LANGUAGE MODEL FOR A DOMAIN-SPECIFIC APPLICATION
 """
 import json
 from pathlib import Path
-import numpy as np
-from sklearn.metrics import accuracy_score
 import torch
 from torch.utils.data import DataLoader, Dataset
+import numpy as np
+from sklearn.metrics import accuracy_score
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASET_FILE = ROOT / "input" / "reviews_dataset.json"
 OUTPUT_FILE = ROOT / "output" / "fine_tuning_results.txt"
+OUTPUT_TXT = ROOT / "output" / "output.txt"
 SAVE_DIR = ROOT / "output" / "fine_tuned_distilbert_imdb"
 
 MODEL_NAME = "distilbert-base-uncased"
@@ -148,9 +149,11 @@ def main() -> None:
         f"Checkpoint Saved: {SAVE_DIR.name}",
     ]
 
+    report_text = "\n".join(report)
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_FILE.write_text("\n".join(report), encoding="utf-8")
-    print(f"Output written to {OUTPUT_FILE}")
+    OUTPUT_FILE.write_text(report_text, encoding="utf-8")
+    OUTPUT_TXT.write_text(report_text, encoding="utf-8")
+    print(f"Output written to {OUTPUT_FILE} and {OUTPUT_TXT}")
 
 
 if __name__ == "__main__":

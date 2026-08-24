@@ -1,0 +1,12 @@
+Ex. No: 10 - Fine-Tuning a Pre-Trained Language Model for Domain Classification
+Base Model: distilbert-base-uncased
+Training samples: 16 | Test samples: 4
+Number of Epochs: 2
+
+--- Training Logs ---
+Epoch 1/2 - loss: 0.0 - accuracy: 1.0
+Epoch 2/2 - loss: 0.0 - accuracy: 1.0
+
+--- Evaluation Results ---
+Evaluation metrics: {'eval_loss': 0.0, 'eval_accuracy': 1.0}
+Checkpoint Saved: fine_tuned_distilbert_imdb

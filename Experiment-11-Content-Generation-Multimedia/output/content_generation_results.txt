@@ -1,0 +1,11 @@
+Ex. No: 11 - AI-Based Content Generation System for Text, Image and Multimedia Applications
+Input Topic: The benefits of renewable energy
+
+--- 1. Generated Text ---
+a renewable energy source is a key source of energy for the world
+
+--- 2. Generated Visual ---
+Image File: content_image.png (512x512 PNG saved)
+
+--- 3. Generated Audio ---
+Audio File: content_audio.mp3 (Narrated speech track saved)

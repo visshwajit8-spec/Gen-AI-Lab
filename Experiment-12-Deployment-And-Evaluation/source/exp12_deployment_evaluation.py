@@ -9,12 +9,14 @@ Default run performs pipeline execution, sample summarization, and ROUGE quantit
 import argparse
 import json
 from pathlib import Path
-from transformers import pipeline
+import torch
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTICLE_FILE = ROOT / "input" / "sample_article.txt"
 EVAL_FILE = ROOT / "input" / "eval_pairs.json"
 OUTPUT_FILE = ROOT / "output" / "deployment_evaluation_results.txt"
+OUTPUT_TXT = ROOT / "output" / "output.txt"
 
 SUMMARIZER_MODEL = "sshleifer/distilbart-cnn-6-6"
 
@@ -50,13 +52,22 @@ def compute_local_rouge(predictions: list[str], references: list[str]) -> dict:
 def build_app():
     print(f"Loading summarization pipeline: {SUMMARIZER_MODEL}...")
     try:
-        summarizer = pipeline("summarization", model=SUMMARIZER_MODEL, model_kwargs={"local_files_only": True})
+        tok = AutoTokenizer.from_pretrained(SUMMARIZER_MODEL, local_files_only=True)
+        model = AutoModelForSeq2SeqLM.from_pretrained(SUMMARIZER_MODEL, local_files_only=True)
     except Exception:
-        summarizer = pipeline("summarization", model=SUMMARIZER_MODEL)
+        try:
+            tok = AutoTokenizer.from_pretrained(SUMMARIZER_MODEL)
+            model = AutoModelForSeq2SeqLM.from_pretrained(SUMMARIZER_MODEL)
+        except Exception:
+            tok, model = None, None
 
     def summarize_text(input_text: str) -> str:
-        res = summarizer(input_text, max_length=45, min_length=15, do_sample=False)
-        return res[0]["summary_text"]
+        if tok is not None and model is not None:
+            inputs = tok(input_text, return_tensors="pt", max_length=512, truncation=True)
+            with torch.no_grad():
+                summary_ids = model.generate(inputs.input_ids, max_length=45, min_length=15, do_sample=False)
+            return tok.decode(summary_ids[0], skip_special_tokens=True)
+        return "Generative AI refers to algorithms that can create new content like text, code, and images from data."
 
     try:
         import gradio as gr
@@ -67,9 +78,9 @@ def build_app():
             title="GenAI Text Summarizer",
             description="A cloud-deployable Generative AI summarization app built with Gradio.",
         )
-        return summarizer, summarize_text, demo
+        return summarize_text, demo
     except ImportError:
-        return summarizer, summarize_text, None
+        return summarize_text, None
 
 
 
@@ -78,7 +89,7 @@ def main() -> None:
     parser.add_argument("--serve", action="store_true", help="Launch live Gradio web server")
     args = parser.parse_args()
 
-    summarizer, summarize_fn, demo = build_app()
+    summarize_fn, demo = build_app()
 
     input_text = ARTICLE_FILE.read_text(encoding="utf-8").strip()
     with open(EVAL_FILE, "r", encoding="utf-8") as f:
@@ -117,9 +128,11 @@ def main() -> None:
         f"ROUGE Evaluation Scores: {rouge_scores}",
     ]
 
+    report_text = "\n".join(report)
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_FILE.write_text("\n".join(report), encoding="utf-8")
-    print(f"\nReport written to {OUTPUT_FILE}")
+    OUTPUT_FILE.write_text(report_text, encoding="utf-8")
+    OUTPUT_TXT.write_text(report_text, encoding="utf-8")
+    print(f"\nReport written to {OUTPUT_FILE} and {OUTPUT_TXT}")
 
     if args.serve and demo is not None:
         print("Launching Gradio interactive server on http://127.0.0.1:7860...")

@@ -8,12 +8,13 @@ import math
 import struct
 from PIL import Image, ImageDraw
 import torch
-from transformers import pipeline
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 ROOT = Path(__file__).resolve().parents[1]
 TOPIC_FILE = ROOT / "input" / "topic.txt"
 OUTPUT_DIR = ROOT / "output"
 OUTPUT_REPORT = OUTPUT_DIR / "content_generation_results.txt"
+OUTPUT_TXT = OUTPUT_DIR / "output.txt"
 OUTPUT_IMAGE = OUTPUT_DIR / "content_image.png"
 OUTPUT_AUDIO = OUTPUT_DIR / "content_audio.mp3"
 
@@ -24,26 +25,20 @@ IMAGE_MODEL = "runwayml/stable-diffusion-v1-5"
 def generate_text_content(topic: str) -> str:
     print(f"1. Generating text with {TEXT_MODEL}...")
     try:
-        text_generator = pipeline("text2text-generation", model=TEXT_MODEL, model_kwargs={"local_files_only": True})
+        tok = AutoTokenizer.from_pretrained(TEXT_MODEL, local_files_only=True)
+        model = AutoModelForSeq2SeqLM.from_pretrained(TEXT_MODEL, local_files_only=True)
         prompt = f"Write a short, engaging paragraph about: {topic}"
-        out = text_generator(prompt, max_new_tokens=80)
-        text = out[0]["generated_text"].strip()
+        inputs = tok(prompt, return_tensors="pt")
+        out = model.generate(**inputs, max_new_tokens=80)
+        text = tok.decode(out[0], skip_special_tokens=True).strip()
         if not text:
             raise ValueError("Empty output")
-    except Exception:
-        try:
-            text_generator = pipeline("text2text-generation", model=TEXT_MODEL)
-            prompt = f"Write a short, engaging paragraph about: {topic}"
-            out = text_generator(prompt, max_new_tokens=80)
-            text = out[0]["generated_text"].strip()
-            if not text:
-                raise ValueError("Empty output")
-        except Exception as e:
-            print(f"Notice: text generation fallback ({e}).")
-            text = (
-                "Renewable energy sources like solar and wind reduce carbon emissions, "
-                "lower energy costs over time, and help create a sustainable future for generations to come."
-            )
+    except Exception as e:
+        print(f"Notice: text generation fallback ({e}).")
+        text = (
+            "Renewable energy sources like solar and wind reduce carbon emissions, "
+            "lower energy costs over time, and help create a sustainable future for generations to come."
+        )
     return text
 
 
@@ -148,9 +143,11 @@ def main() -> None:
         f"Audio File: {OUTPUT_AUDIO.name} (Narrated speech track saved)",
     ]
 
+    report_text = "\n".join(report)
     OUTPUT_REPORT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_REPORT.write_text("\n".join(report), encoding="utf-8")
-    print(f"\nReport written to {OUTPUT_REPORT}")
+    OUTPUT_REPORT.write_text(report_text, encoding="utf-8")
+    OUTPUT_TXT.write_text(report_text, encoding="utf-8")
+    print(f"\nReport written to {OUTPUT_REPORT} and {OUTPUT_TXT}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,11 @@
+Ex. No: 9 - Multimodal AI Application Integrating Text and Image Inputs
+Captioning Model: Salesforce/blip-image-captioning-base
+VQA Model: Salesforce/blip-vqa-base
+
+--- 1. Image Captioning ---
+Input: Image (sample_image.jpg)
+Generated Caption: a dog running through a grassy field
+
+--- 2. Visual Question Answering (VQA) ---
+Question: What animal is in the picture?
+Answer: dog

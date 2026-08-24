@@ -1,0 +1,12 @@
+Ex. No: 4 - Text Summarization and Question Answering
+Summarization model: sshleifer/distilbart-cnn-6-6
+QA model: distilbert-base-cased-distilled-squad
+
+ARTICLE:
+Generative AI refers to a class of artificial intelligence models capable of producing new content such as text, images, audio, and video. Large Language Models (LLMs) such as GPT and LLaMA are trained on massive text corpora and can perform a wide range of natural language tasks including translation, summarization, and question answering. These models are increasingly being deployed in industry applications ranging from customer support to software development, transforming how humans interact with machines.
+
+Summary:
+ Large Language Models (LLMs) are trained on massive text corpora and can perform a wide range of natural language tasks including translation, summarization, and question answering . These models are increasingly being deployed in industry
+
+Question: What are Large Language Models trained on?
+Answer: massive text corpora | Confidence: 0.892

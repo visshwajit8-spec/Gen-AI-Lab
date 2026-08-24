@@ -1,0 +1,15 @@
+Ex. No: 1 - Text Generation Using Pre-Trained Foundation Models
+Model: gpt2
+Prompt: Artificial Intelligence will transform the future of
+
+--- Generated Text 1 ---
+Artificial Intelligence will transform the future of data into a powerful tool for the future of humanity. The "Deep Learning" of Machine Learning and Artificial Intelligence will bring about the transformation of the world.
+
+The Deep Learning of Machine Learning and Artificial Intelligence
+
+Machine Learning is the next step
+
+--- Generated Text 2 ---
+Artificial Intelligence will transform the future of our work. With AI, we may be able to do things that other people aren't able to. You can't have it all, but you can create artificial intelligence that does things we don't even have to think about.
+
+I think

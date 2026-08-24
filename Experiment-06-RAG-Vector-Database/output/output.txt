@@ -1,0 +1,12 @@
+Ex. No: 6 - Retrieval-Augmented Generation (RAG)
+Embedding model: all-MiniLM-L6-v2
+Vector database: FAISS IndexFlatIP (cosine similarity)
+Generator: google/flan-t5-small
+
+Query: What is RAG in AI?
+
+Retrieved Context:
+- RAG (Retrieval-Augmented Generation) in AI combines document retrieval with text generation.
+- Python is a popular high-level programming language used in AI development.
+
+Answer: combines document retrieval with text generation

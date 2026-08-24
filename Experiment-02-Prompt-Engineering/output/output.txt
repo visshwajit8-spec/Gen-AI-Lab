@@ -1,0 +1,49 @@
+Ex. No: 2 - Prompt Engineering Techniques
+Model: gpt2
+
+=== Zero-shot ===
+PROMPT:
+Classify the sentiment of this review as Positive or Negative: 'The product quality is excellent!'
+Sentiment:
+
+OUTPUT:
+Classify the sentiment of this review as Positive or Negative: 'The product quality is excellent!'
+Sentiment: 'The product quality is excellent!'
+The product is great. I bought this product because I wanted to try it out. I have been using it for a few months now and it is a great
+
+=== Few-shot ===
+PROMPT:
+Review: 'I loved this movie, it was fantastic.'
+Sentiment: Positive
+Review: 'The service was slow and disappointing.'
+Sentiment: Negative
+Review: 'The product quality is excellent!'
+Sentiment:
+
+OUTPUT:
+Review: 'I loved this movie, it was fantastic.'
+Sentiment: Positive
+Review: 'The service was slow and disappointing.'
+Sentiment: Negative
+Review: 'The product quality is excellent!'
+Sentiment: Negative
+Review: 'The movie was a bit too long.'
+Sentiment: Negative
+Review: 'The movie was a bit too long.'
+Sentiment: Negative
+Review: 'The
+
+=== Chain-of-Thought ===
+PROMPT:
+Q: A shop had 15 apples. It sold 6 and then received 10 more. How many apples now?
+A: Let's think step by step. 15 - 6 = 9. 9 + 10 = 19. The answer is 19.
+Q: A library had 120 books. It lent out 45 and bought 30 new books. How many books now?
+A: Let's think step by step.
+
+OUTPUT:
+Q: A shop had 15 apples. It sold 6 and then received 10 more. How many apples now?
+A: Let's think step by step. 15 - 6 = 9. 9 + 10 = 19. The answer is 19.
+Q: A library had 120 books. It lent out 45 and bought 30 new books. How many books now?
+A: Let's think step by step. 120 - 30 = 1. 1 + 1 = 1.
+Q: A store had 100 books. It lent out 100 books and bought 100 new books. How many books now?
+A:

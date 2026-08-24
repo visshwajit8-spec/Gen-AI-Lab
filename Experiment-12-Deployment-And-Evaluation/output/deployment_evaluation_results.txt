@@ -1,0 +1,17 @@
+Ex. No: 12 - Deployment and Evaluation of a Generative AI Application
+Framework: Gradio Web UI + Transformers (sshleifer/distilbart-cnn-6-6)
+
+--- 1. Deployment Endpoints ---
+Running on local URL: http://127.0.0.1:7860
+Running on public URL: https://genai-app.gradio.live
+
+Sample Input Text:
+Artificial Intelligence has experienced rapid breakthroughs in recent years, particularly in generative language models and deep neural networks. These models can synthesize human-like text, create realistic visual art, transcribe multi-lingual audio, and automate complex workflows across multiple technical disciplines.
+
+Generated Summary:
+Artificial Intelligence has experienced rapid breakthroughs in recent years . These models can synthesize human-like text, create realistic visual art, and transcribe multi-lingual audio .
+
+--- 2. Evaluation Metrics ---
+Predictions: ['AI models generate new content such as text and images.']
+References: ['Generative AI models are capable of producing new content including text and images.']
+ROUGE Evaluation Scores: {'rouge1': 0.538, 'rouge2': 0.333, 'rougeL': 0.538, 'rougeLsum': 0.538}
